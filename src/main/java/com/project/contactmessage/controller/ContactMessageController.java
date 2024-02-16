@@ -77,9 +77,35 @@ public class ContactMessageController {
 
 
     //2 tarih arasindaki contactmessageleri getirme
-//    @GetMapping("/searchBetweenDates")//http://localhost:8080/contactMessages/searchBetweenDates?beginDate=2023-09-13&endDate=2023-09-15 + GET
-//    public ResponseEntity<List<ContactMessage>> searchBetweenDates(@RequestParam(value = "beginDate") String beginDateString,
-//                                                                   @RequestParam(value = "endDate") String endDateString) {
-//
-//    }
+    @GetMapping("/searchBetweenDates")//http://localhost:8080/contactMessages/searchBetweenDates?beginDate=2023-09-13&endDate=2023-09-15 + GET
+    public ResponseEntity<List<ContactMessage>> searchBetweenDates(@RequestParam(value = "beginDate") String beginDateString,
+                                                                   @RequestParam(value = "endDate") String endDateString) {
+        List<ContactMessage> contactMessages = contactMessageService.searchBetweenDates(beginDateString, endDateString);
+        return ResponseEntity.ok(contactMessages);
+    }
+
+
+    //2 Saat ve dk araligindaki contactmessageleri getirme
+    @GetMapping("/searchBetweenTimes")//http://localhost:8080/contactMessages/searchBetweenTimes?startHour=09&startMinute=00&endHour=17&endMinute=30  + GET
+    public ResponseEntity<List<ContactMessage>> searchBetweenTimes(
+            @RequestParam(value = "startHour") String startHourString,
+            @RequestParam(value = "startMinute") String startMinuteString,
+            @RequestParam(value = "endHour") String endHourString,
+            @RequestParam(value = "endMinute") String endMinuteString){
+        List<ContactMessage> contactMessages = contactMessageService.searchBetweenTimes(startHourString,startMinuteString,endHourString,endMinuteString);
+        return ResponseEntity.ok(contactMessages);
+    }
+
+
+    @GetMapping("/getByIdParam")//http://localhost:8080/contactMessages/getByIdParam
+    public ResponseEntity<ContactMessage> getById(@RequestParam(value = "contactMessageId") Long contactMessageId){
+        return ResponseEntity.ok(contactMessageService.getContactMessageById(contactMessageId));
+    }
+
+
+    @GetMapping("/getById/{contactMessageId}")//http://localhost:8080/contactMessages/getById/1
+    public ResponseEntity<ContactMessage> getByIdPath(@PathVariable Long contactMessageId){
+        return ResponseEntity.ok(contactMessageService.getContactMessageById(contactMessageId));
+
+    }
 }
