@@ -67,7 +67,7 @@ public class User {
 
     private boolean isActive;
 
-    private Boolean isAdvisor;
+    private Boolean isAdvisor;//ogretmen aynin zamnda rehber ogretmense(Advisor ise) bu deger true
 
     private Long advisorTeacherId;// bu Ogrenciler icin lazim, kendi rehber ogretmeninin
     // id si buraya yazilacak
@@ -96,5 +96,9 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "meet_id")
     )
     private List<Meet> meetList;
-//Meet
+
+
+    @OneToOne
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    private UserRole userRole;
 }
