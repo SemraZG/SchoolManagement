@@ -35,4 +35,11 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("SELECT u FROM User u WHERE u.isAdvisor =?1")//isAdvisor true demek o ogretmen ayni zamanda advisor yani rehber ogretmn demek
     List<User> findAllByAdvisor(Boolean aTrue);//a otomatik geldi
+
+    @Query("SELECT (COUNT (u)>0) FROM User u WHERE u.userRole.roleType = ?1 ")
+    boolean findStudent(RoleType roleType);
+
+    @Query("SELECT MAX (u.studentNumber) FROM User u")
+    int getMaxStudentNumber();
+
 }

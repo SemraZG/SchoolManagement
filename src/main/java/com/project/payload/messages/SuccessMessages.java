@@ -16,6 +16,9 @@ public class SuccessMessages {
     public static final String TEACHER_UPDATE = "Teacher has been updated successfully ";
     public static final String ADVISOR_TEACHER_SAVE = "Advisor Teacher is saved successfully ";
     public static final String ADVISOR_TEACHER_DELETE = "Advisor Teacher is deleted successfully ";
+    public static final String STUDENT_SAVED = "Student is saved successfully ";
+    public static final String STUDENT_UPDATE = "Student is updated successfully ";
+
 
 
 }
